@@ -18,21 +18,38 @@ showBubble('.XB', 100, 40);
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
+
+
+function randGen() {
+    let person = document.getElementsByClassName('WZ')[0];
+    let randomChar = "ABCDEFGHIJKLMBNIOERTERGabcdefghijklmnopqrstuvwxyz1234567890$%#@!^&*(";
+
+    let counter = 0;
+    let i = setInterval(function(){
+        
+        for(let i = 0; i < 10; i++){
+            let element = document.createElement('div');
+            element.classList.add('reply');
+            element.innerText = randomChar.charAt(getRandomInt(randomChar.length));
+            person.appendChild(element);
+        }
     
-let testTxt = document.getElementById("test");
-
-let randomChar = ['a','b','c','d','e','f','g',1,2,3,4,5,6];
-
-let counter = 0;
-let i = setInterval(function(){
-    testTxt.innerHTML = "";
-    for(let i = 0;i < 10;i++){
-        testTxt.innerHTML += randomChar[getRandomInt(randomChar.length)];
-    }
     counter++;
     if(counter == 10){
         clearInterval(i);
-        testTxt.innerHTML = "Helloworld";
-    }
+        
+        answer = "HelloWorld"
+        for (let i = 0; i < answer.length; i++) {
+            let element = document.createElement('div');
+            element.classList.add('reply');
+            element.innerText = answer.charAt(i);
+            person.appendChild(element);
+        }
 
-}, 100);
+    }
+    }, 100);
+}
+
+randGen();
+
+
