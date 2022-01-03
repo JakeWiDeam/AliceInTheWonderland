@@ -32,7 +32,7 @@ let i = setInterval(function(){
     counter++;
     if(counter == 10){
         clearInterval(i);
-        testTxt.innerHTML = "Hello world";
+        testTxt.innerHTML = "Helloworld";
     }
 
 }, 100);
