@@ -1,1 +1,26 @@
-blablabla
+<html>
+    <head>
+        <title>Mickey Mouse</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header></header>
+        <div id="wrapper">
+            <div class="chatbox">
+                <div class="XB"></div>
+            </div>
+        </div>
+        <script src="anime.min.js"></script>
+        <script>
+            anime({
+                targets: '.XB',
+                translateX: -100,
+                translateY: -40,
+                width: '100px',
+                height: '40px',
+                duration: 1000,
+                easing: 'easeInExpo',
+            })
+        </script>
+    </body>
+</html>
