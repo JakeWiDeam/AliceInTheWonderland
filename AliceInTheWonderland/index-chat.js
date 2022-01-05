@@ -1,55 +1,117 @@
-function showBubble(id, width, height){
-    let widthStr = width + 'px';
-    let heightStr = height + 'px';
+function bubbleChat(width, height){
 
     anime({
-        targets: id,
-        translateX: -width,
-        translateY: -height,
-        width: widthStr,
-        height: heightStr,
-        duration: 1000,
-        easing: 'easeInExpo',
+        targets: '.XB',
+        keyframes: [
+            {translateY: height, duration: 500, easing: 'easeOutExpo'},
+            {width: width, translateY: -0, height: height, borderRadius: width/10, delay: 200},
+        ],
+        loop: false
     })
 }
 
-showBubble('.XB', 100, 40);
+function typewriter(msg) {
+    let chat = document.getElementsByClassName('XB')[0];
+    let typewriter = new Typewriter(chat, {
+        loop: false
+    });
+
+    typewriter.typeString(msg)
+        .pauseFor(2000)
+        .start();    
+}
+
+function twBubble() {
+    bubbleChat(40, 30);
+    let i = setTimeout(() => {
+        typewriter('Hello World')
+        clearTimeout(i);
+    }, 1000);    
+}
+
+twBubble();
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+function randGen(ans) {
 
-function randGen() {
+    let answer = ans;    
     let person = document.getElementsByClassName('WZ')[0];
-    let randomChar = "ABCDEFGHIJKLMBNIOERTERGabcdefghijklmnopqrstuvwxyz1234567890$%#@!^&*(";
-
+    let randomChar = "ABCDEFGHIJKLMBNIOERTERGabcdefghijklmnopqrstuvwxyz1234567890$%#@!^&*(";  
+    
     let counter = 0;
     let i = setInterval(function(){
-        
-        for(let i = 0; i < 10; i++){
+        let groupOfReply = document.createElement('div');
+        groupOfReply.classList.add('groupOfReply');
+        person.appendChild(groupOfReply);  
+
+        for(let i = 0; i < answer.length; i++){
             let element = document.createElement('div');
             element.classList.add('reply');
             element.innerText = randomChar.charAt(getRandomInt(randomChar.length));
-            person.appendChild(element);
+            groupOfReply.appendChild(element);
         }
-    
-    counter++;
-    if(counter == 10){
-        clearInterval(i);
-        
-        answer = "HelloWorld"
-        for (let i = 0; i < answer.length; i++) {
-            let element = document.createElement('div');
-            element.classList.add('reply');
-            element.innerText = answer.charAt(i);
-            person.appendChild(element);
-        }
+        matrixAni(answer.length)
 
-    }
-    }, 100);
+        counter++;
+        if(counter == 10){
+            clearInterval(i);
+            let groupOfAns = document.createElement('div');
+            groupOfAns.classList.add('groupOfAns');
+            person.appendChild(groupOfAns);
+
+            for (let i = 0; i < answer.length; i++) {
+                let element = document.createElement('div');
+                element.classList.add('answer');
+                element.innerText = answer.charAt(i);
+                groupOfAns.appendChild(element);
+            }
+            ansAni(answer.length);          
+        }
+    }, 300);
 }
 
-randGen();
+randGen('Hello World');
+
+function matrixAni(len) {
+
+    let chars = document.getElementsByClassName('reply');
+    const matrix = Array.from(chars);
+
+    anime({
+        targets: shuffle(matrix.slice(-len)),
+        translateY: 50,
+        opacity: [0.7, 0],
+        delay: anime.stagger(50)
+    })
+}
+
+function ansAni(len) {
+
+    let chars = document.getElementsByClassName('answer');
+    const answer = Array.from(chars);
+
+    anime({
+        targets: shuffle(answer.slice(-len)),
+        opacity: [0, 1],
+        delay: anime.stagger(50)
+    })
+}
 
 
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    while (currentIndex != 0) {
+  
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }

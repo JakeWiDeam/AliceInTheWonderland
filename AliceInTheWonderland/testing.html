@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div class="boxes" style='display: inline-block; width: 20px; height: 20px; background-color: red;'></div>
+        <div class="boxes" style='display: inline-block; width: 20px; height: 20px; background-color: red;'></div>
+        <div class="boxes" style='display: inline-block; width: 20px; height: 20px; background-color: red;'></div>
+    </div>
+    <div>
+        <div class="boxas" style='display: inline-block; width: 20px; height: 20px; background-color: red;'></div>
+        <div class="boxas" style='display: inline-block; width: 20px; height: 20px; background-color: red;'></div>
+        <div class="boxas" style='display: inline-block; width: 20px; height: 20px; background-color: red;'></div>
+    </div>
+    <div class="typewriter"></div>
+    <script src="anime.min.js"></script>
+    <script src="typewriter.js"></script>
+    <script>
+        let boxes = document.getElementsByClassName('boxes');
+        const moBox = Array.from(boxes).slice(-2);
+
+        let boxas = document.getElementsByClassName('boxas');
+        const movBox = Array.from(boxas).slice(-2);
+
+        anime ({
+            targets: [moBox, movBox],
+            translateY: 120,
+            delay: anime.stagger(100)
+        })
+
+        var app = document.getElementsByClassName('typewriter')[0];
+
+        var typewriter = new Typewriter(app, {
+            loop: false
+        });
+
+        typewriter.typeString('Hello World!')
+            .start()
+    </script>
+</body>
+</html>

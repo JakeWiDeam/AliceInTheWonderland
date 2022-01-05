@@ -17,28 +17,36 @@ header {
 }
 
 .chatbox {
-    height: 40px;
-    position: relative;
+    height: 60px;
     margin: 10px;
 }
 
 .XB {
     background-color: red;
-    display: inline-block;
-    position: absolute;
-    left: 100%;
-    top: 100%;
-    width: 1px;
-    height: 1px;
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    float: right;
 }
 
 .WZ {
-    background-color: blue;
+    background-color: yellow;
     display: inline-block;
-    width: 100px;
-    height: 10px;
+    
 }
 
-.reply {
-    display: inline-block;
+.groupOfReply, .groupOfAns{
+    background-color: yellow;
+    position: absolute;
+    height: 20px;
+    padding: 10px;
+    border-radius: 10px;
 }
+
+.reply, .answer {
+    display: inline-block;
+    width: 15px;
+    text-align: center;
+}
+
