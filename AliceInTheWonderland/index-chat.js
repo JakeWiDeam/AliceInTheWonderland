@@ -47,7 +47,7 @@ function randGen(ans, target, index) {
         matrixAni(answer.length, index)
 
         counter++;
-        if(counter == 10){
+        if(counter == 4){
             clearInterval(i);
             let groupOfAns = document.createElement('div');
             groupOfAns.classList.add('groupOfAns');
@@ -126,9 +126,3 @@ function pathFinder(person, index) {
     return document.getElementsByClassName(person)[index];
 }
 
-typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 0);
-typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 0);
-typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 1);
-typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 1);
-typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 2);
-typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 2);

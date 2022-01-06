@@ -26,22 +26,6 @@ let chatContent = {
         0,0,0,0,0,0
     ]
 }
-// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 0);
-// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 0);
-// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 1);
-// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 1);
-// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 2);
-// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 2);
-// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 3);
-// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 3);
-// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 4);
-// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 4);
-// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 5);
-// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 5);
-// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 6);
-// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 6);
-// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 7);
-// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 7);
 
 function makeChat(i){
 
@@ -52,7 +36,8 @@ function makeChat(i){
     
     if ( (i+1) % 2 == 0){
         typeChat('matrix', 150, 50, chatContent.msg[i], chatContent.className[i], classIndex)
-    } else {
+    } 
+    else {
         typeChat('tw', 130, 50, chatContent.msg[i], chatContent.className[i], classIndex)
     }
     chatContent.executed[i] = 1;
@@ -66,16 +51,33 @@ let headerHeight = 0.2 * vh;
 let initBoxCount = parseFloat(((vh - headerHeight) / 70).toFixed(0));
 let boxLeft = NUM_CHATBOX - initBoxCount;
 
-for(let i = 0; i < initBoxCount; i++){
-    makeChat(i);
-}
+//initialize
+let clickCount = 0;
+document.body.style.overflow = 'hidden';
 
+let t = setTimeout(function(){
+    document.body.scrollTop = 0;
+}, 50)
+    
+
+document.addEventListener("click",
+    function(){
+        if (clickCount < initBoxCount){
+            makeChat(clickCount);
+        }
+
+        if(clickCount >= initBoxCount - 1){
+            document.body.style.overflow = 'visible';
+        }
+        clickCount++;
+    });
+
+//scroll
 document.addEventListener("scroll", function(){
     let scrollProgress = document.body.scrollTop;
-    console.log(scrollProgress);
 
     for(let i = 0; i < boxLeft; i++) {
-        if(scrollProgress > 70 * i){
+        if(scrollProgress > 70 * (i+1)){
             makeChat(i + initBoxCount);
         }
     }
