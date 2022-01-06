@@ -36,7 +36,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
 
 .groupOfReply, .groupOfAns{
@@ -47,4 +46,5 @@ header {
 .reply, .answer {
     display: inline-block;
     margin: 0 1;
+    font-family: 'Share Tech Mono', monospace;
 }

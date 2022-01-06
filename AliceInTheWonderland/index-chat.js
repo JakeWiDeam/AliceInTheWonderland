@@ -1,19 +1,17 @@
-function bubble(width, height, person){
+function bubble(width, height, person, index=0){
 
     anime({
-        targets: '.' + person,
+        targets: person,
         keyframes: [
             {translateY: height, duration: 500, easing: 'easeOutExpo'},
             {width: width, translateY: -0, height: height, borderRadius: height/5, delay: 200},
         ],
         loop: false
     })
-
-    document.getElementsByClassName('XB')[0].style.leftPadding = 3.21;
 }
 
-function typewriter(msg) {
-    let chat = document.getElementsByClassName('XB')[0];
+function typewriter(msg, target) {
+    let chat = target;
     let typewriter = new Typewriter(chat, {
         loop: false
     });
@@ -28,9 +26,9 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-function randGen(ans) {
+function randGen(ans, target) {
     let answer = ans;    
-    let person = document.getElementsByClassName('WZ')[0];
+    let person = target;
     let randomChar = "ABCDEFGHIJKLMBNIOERTERGabcdefghijklmnopqrstuvwxyz1234567890$%#@!^&*(";  
     
     let counter = 0;
@@ -106,21 +104,26 @@ function shuffle(array) {
     return array;
   }
 
-function typeChat(width, height, msg, person) {
+function typeChat(effect, width, height, msg, person) {
     bubble(width, height, person);
-    if (person == 'XB') {
+    if (effect == 'tw') {
         let i = setTimeout(() => {
-            typewriter(msg);
+            typewriter(msg, person);
+            person.style.leftPadding = 3.21;
             clearTimeout(i);
         }, 1000);
     }
-    else if (person == 'WZ') {
+    else if (effect == 'matrix') {
         let i = setTimeout(() => {
-            randGen(msg);
+            randGen(msg, person);
             clearTimeout(i);
         }, 1000);
     }      
 }
 
-typeChat(90, 50, 'hello world', 'XB');
-typeChat(220, 50, 'hello  world', 'WZ');
+typeChat('tw', 120, 50, 'hello world', pathFinder('XB', 0));
+typeChat('matrix', 150, 50, 'hello  World', pathFinder('WZ', 0));
+
+function pathFinder(person, index) {
+    return document.getElementsByClassName(person)[index];
+}
