@@ -1,0 +1,83 @@
+let chatContent = {
+    "className":[
+        'XB', 'WZ', 'XB', 'WZ', 'XB', 'WZ', 'XB', 'WZ', 'XB', 'WZ',
+        'XB', 'WZ', 'XB', 'WZ', 'XB', 'WZ'
+    ],
+    "msg":[
+        'lorem ipsum1',
+        'lorem ipsum2',
+        'lorem ipsum3',
+        'lorem ipsum4',
+        'lorem ipsum5',
+        'lorem ipsum6',
+        'lorem ipsum7',
+        'lorem ipsum8',
+        'lorem ipsum9',
+        'lorem ipsum10',
+        'lorem ipsum11',
+        'lorem ipsum12',
+        'lorem ipsum13',
+        'lorem ipsum14',
+        'lorem ipsum15',
+        'lorem ipsum16'
+    ],
+    "executed":[
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0
+    ]
+}
+// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 0);
+// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 0);
+// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 1);
+// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 1);
+// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 2);
+// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 2);
+// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 3);
+// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 3);
+// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 4);
+// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 4);
+// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 5);
+// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 5);
+// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 6);
+// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 6);
+// typeChat('tw', 120, 50, 'lorem ipsum', 'XB', 7);
+// typeChat('matrix', 150, 50, 'lorem ipsum', 'WZ', 7);
+
+function makeChat(i){
+
+    let classIndex = Math.floor(i / 2);
+    
+    if(chatContent.executed[i] == 1)
+        return;
+    
+    if ( (i+1) % 2 == 0){
+        typeChat('matrix', 150, 50, chatContent.msg[i], chatContent.className[i], classIndex)
+    } else {
+        typeChat('tw', 130, 50, chatContent.msg[i], chatContent.className[i], classIndex)
+    }
+    chatContent.executed[i] = 1;
+
+}
+
+const NUM_CHATBOX = 16;
+let vh = visualViewport.height;
+let headerHeight = 0.2 * vh;
+
+let initBoxCount = parseFloat(((vh - headerHeight) / 70).toFixed(0));
+let boxLeft = NUM_CHATBOX - initBoxCount;
+
+for(let i = 0; i < initBoxCount; i++){
+    makeChat(i);
+}
+
+document.addEventListener("scroll", function(){
+    let scrollProgress = document.body.scrollTop;
+    console.log(scrollProgress);
+
+    for(let i = 0; i < boxLeft; i++) {
+        if(scrollProgress > 70 * i){
+            makeChat(i + initBoxCount);
+        }
+    }
+    
+});
