@@ -1,13 +1,15 @@
-function bubbleChat(width, height){
+function bubble(width, height, person){
 
     anime({
-        targets: '.XB',
+        targets: '.' + person,
         keyframes: [
             {translateY: height, duration: 500, easing: 'easeOutExpo'},
-            {width: width, translateY: -0, height: height, borderRadius: width/10, delay: 200},
+            {width: width, translateY: -0, height: height, borderRadius: height/5, delay: 200},
         ],
         loop: false
     })
+
+    document.getElementsByClassName('XB')[0].style.leftPadding = 3.21;
 }
 
 function typewriter(msg) {
@@ -18,25 +20,15 @@ function typewriter(msg) {
 
     typewriter.typeString(msg)
         .pauseFor(2000)
-        .start();    
+        .start();
+        
 }
-
-function twBubble() {
-    bubbleChat(40, 30);
-    let i = setTimeout(() => {
-        typewriter('Hello World')
-        clearTimeout(i);
-    }, 1000);    
-}
-
-twBubble();
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
 function randGen(ans) {
-
     let answer = ans;    
     let person = document.getElementsByClassName('WZ')[0];
     let randomChar = "ABCDEFGHIJKLMBNIOERTERGabcdefghijklmnopqrstuvwxyz1234567890$%#@!^&*(";  
@@ -72,8 +64,6 @@ function randGen(ans) {
         }
     }, 300);
 }
-
-randGen('Hello World');
 
 function matrixAni(len) {
 
@@ -115,3 +105,22 @@ function shuffle(array) {
   
     return array;
   }
+
+function typeChat(width, height, msg, person) {
+    bubble(width, height, person);
+    if (person == 'XB') {
+        let i = setTimeout(() => {
+            typewriter(msg);
+            clearTimeout(i);
+        }, 1000);
+    }
+    else if (person == 'WZ') {
+        let i = setTimeout(() => {
+            randGen(msg);
+            clearTimeout(i);
+        }, 1000);
+    }      
+}
+
+typeChat(90, 50, 'hello world', 'XB');
+typeChat(220, 50, 'hello  world', 'WZ');

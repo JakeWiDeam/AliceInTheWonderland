@@ -23,30 +23,28 @@ header {
 
 .XB {
     background-color: red;
-    display: block;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     float: right;
+    
 }
 
 .WZ {
     background-color: yellow;
-    display: inline-block;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
 }
 
 .groupOfReply, .groupOfAns{
     background-color: yellow;
     position: absolute;
-    height: 20px;
-    padding: 10px;
-    border-radius: 10px;
 }
 
 .reply, .answer {
     display: inline-block;
-    width: 15px;
-    text-align: center;
+    margin: 0 1;
 }
-
