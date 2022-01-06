@@ -1,4 +1,4 @@
-function bubble(width, height, person, index=0){
+function bubble(width, height, person){
 
     anime({
         targets: person,
