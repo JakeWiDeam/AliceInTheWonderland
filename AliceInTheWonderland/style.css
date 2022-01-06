@@ -28,6 +28,7 @@ header {
     justify-content: center;
     float: right;
     letter-spacing: 1px;
+    font-family: 'Luxurious Roman', cursive;
 }
 
 .WZ {
@@ -43,7 +44,7 @@ header {
     position: absolute;
 }
 
-.reply, .answer {
+div[class^='reply'], .answer {
     display: inline-block;
     margin: 0 1;
     font-family: 'Share Tech Mono', monospace;
