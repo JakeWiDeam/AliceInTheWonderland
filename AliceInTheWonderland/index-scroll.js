@@ -46,9 +46,9 @@ function makeChat(i){
 
 const NUM_CHATBOX = 16;
 let vh = visualViewport.height;
-let headerHeight = 0.2 * vh;
+let wrapperHeight = vh - (0.2 * vh) - 90;
 
-let initBoxCount = parseFloat((((vh - headerHeight - 90) / 80).toFixed(0)));
+let initBoxCount = parseFloat(wrapperHeight / 80).toFixed(0);
 let boxLeft = NUM_CHATBOX - initBoxCount;
 
 //initialize
@@ -71,15 +71,13 @@ document.addEventListener("click",
         }
         clickCount++;
     });
-
 //scroll
 document.getElementById('wrapper').addEventListener("scroll", function(){
     let scrollProgress = document.getElementById('wrapper').scrollTop;
 
     for(let i = 0; i < boxLeft; i++) {
         if(scrollProgress > 60 * (i+1)){
-            makeChat(i + initBoxCount);
+            makeChat(i + parseInt(initBoxCount));
         }
     }
-    
 });
