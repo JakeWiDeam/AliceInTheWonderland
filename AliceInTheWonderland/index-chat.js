@@ -14,7 +14,7 @@ function typewriter(msg, target) {
     let chat = target;
     let typewriter = new Typewriter(chat, {
         loop: false,
-        cursor: 'I'
+        cursor: ''
     });
 
     typewriter.typeString(msg)

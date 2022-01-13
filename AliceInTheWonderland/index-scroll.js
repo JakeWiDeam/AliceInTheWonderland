@@ -48,15 +48,15 @@ const NUM_CHATBOX = 16;
 let vh = visualViewport.height;
 let headerHeight = 0.2 * vh;
 
-let initBoxCount = parseFloat(((vh - headerHeight) / 70).toFixed(0));
+let initBoxCount = parseFloat((((vh - headerHeight - 90) / 80).toFixed(0)));
 let boxLeft = NUM_CHATBOX - initBoxCount;
 
 //initialize
 let clickCount = 0;
-document.body.style.overflow = 'hidden';
+document.getElementById('wrapper').style.overflow = 'hidden';
 
 let t = setTimeout(function(){
-    document.body.scrollTop = 0;
+    document.getElementById('wrapper').scrollTop = 0;
 }, 50)
     
 
@@ -67,17 +67,17 @@ document.addEventListener("click",
         }
 
         if(clickCount >= initBoxCount - 1){
-            document.body.style.overflow = 'visible';
+            document.getElementById('wrapper').style.overflowY = 'scroll';
         }
         clickCount++;
     });
 
 //scroll
-document.addEventListener("scroll", function(){
-    let scrollProgress = document.body.scrollTop;
+document.getElementById('wrapper').addEventListener("scroll", function(){
+    let scrollProgress = document.getElementById('wrapper').scrollTop;
 
     for(let i = 0; i < boxLeft; i++) {
-        if(scrollProgress > 70 * (i+1)){
+        if(scrollProgress > 60 * (i+1)){
             makeChat(i + initBoxCount);
         }
     }
