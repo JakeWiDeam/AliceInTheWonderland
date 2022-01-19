@@ -27,6 +27,19 @@ let chatContent = {
     ]
 }
 
+function checkExe() {
+    let run = 0;
+    let num = chatContent.executed.length;
+    for (let i = 0; i < num; i++) {
+        if (chatContent.executed[i] == 1) {
+            run++;
+        }   
+    }
+    console.log(num);
+    console.log(run);
+    return num, run;
+}
+
 function makeChat(i){
 
     let classIndex = Math.floor(i / 2);
@@ -64,6 +77,7 @@ document.addEventListener("click",
     function(){
         if (clickCount < initBoxCount){
             makeChat(clickCount);
+            checkExe();
         }
 
         if(clickCount >= initBoxCount - 1){
@@ -78,6 +92,10 @@ document.getElementById('wrapper').addEventListener("scroll", function(){
     for(let i = 0; i < boxLeft; i++) {
         if(scrollProgress > 60 * (i+1)){
             makeChat(i + parseInt(initBoxCount));
+            checkExe();
+            // progressBar(checkExe());
         }
     }
 });
+
+

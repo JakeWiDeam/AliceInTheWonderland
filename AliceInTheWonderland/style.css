@@ -59,17 +59,19 @@ img {
 
 #content {
     flex-grow: 2;
+    width: 70%;
     display: flex;
     flex-direction: column;
 }
 
 #wrapper {
     margin: 10px;
-    /* overflow-x: hidden; */
     height: calc(80vh - 90px);    
 }
 
 #progressBar {
+    display: flex;
+    align-items: center;
     height: 70px;
     width: 100%;
     background-color: #FAB6DC;
@@ -124,8 +126,22 @@ div[class^='reply'], .answer {
     border-radius: 1px;
 }
 
+#footer {
+    display: flex;
+    align-items: center;
+}
+
 input {
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
+    width: 0;
+    padding: 5px 10px;
+    border-color: transparent;
+    border-radius: 15px;
+    outline-style: dotted;
+    outline-color: white;
+    background: linear-gradient(90deg,rgba(254,235,245,1) 0%,  rgba(219,242,247,1)100%);
+    transition: width 0.5s;
+}
+
+input:focus {
+    outline: none;
 }

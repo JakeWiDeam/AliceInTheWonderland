@@ -7,7 +7,7 @@ function bubble(width, height, person){
             {width: width, translateY: -0, height: height, borderRadius: height/5, delay: 200},
         ],
         loop: false        
-    })
+    });
 }
 
 function typewriter(msg, target) {
@@ -73,7 +73,7 @@ function matrixAni(len, index) {
         targets: shuffle(matrix.slice(-len)),
         opacity: [0.7, 0],
         delay: anime.stagger(50)
-    })
+    });
 }
 
 function ansAni(len) {
@@ -85,7 +85,7 @@ function ansAni(len) {
         targets: shuffle(answer.slice(-len)),
         opacity: [0, 1],
         delay: anime.stagger(50)
-    })
+    });
 }
 
 
@@ -126,3 +126,7 @@ function pathFinder(person, index) {
     return document.getElementsByClassName(person)[index];
 }
 
+function progressBar(number, factor) {
+    setWidth = document.getElementById('progressBar').offsetWidth/number * factor;
+    document.getElementById('typeBox').style.width = setWidth;
+}
